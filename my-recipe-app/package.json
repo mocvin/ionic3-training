@@ -1,6 +1,6 @@
 {
-  "name": "MyRecipeApp",
-  "version": "q.0.0",
+  "name": "my-recipes-app",
+  "version": "1.0.0",
   "author": "Vincenzo Moccia",
   "homepage": "http://www.mocciavincenzo.it",
   "private": true,
