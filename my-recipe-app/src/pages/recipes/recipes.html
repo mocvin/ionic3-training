@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="onNewRecipe()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Recipes</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-grid *ngIf="!(recipes | async)?.length" style="height: 100%">
+    <ion-row justify-content-center align-items-center style="height: 100%">
+      <ion-col text-center>
+        <p class="no-recipes">Still no recipe added :) </p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-card *ngFor="let recipe of (recipes | async); index as i">
+    <ion-card-content>
+      <ion-card-title>
+        {{recipe.title}}
+        <p>{{recipe.difficulty}}</p>
+      </ion-card-title>
+      <button outline block ion-button small (click)="onClickViewDescription(recipe, i)"> View Details </button>
+    </ion-card-content>
+    <ion-row>
+      <ion-col text-right>
+        <button ion-button clear small (click)="onClickToBuyIngredients(recipe)">Buy Ingredients</button>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+
+</ion-content>
