@@ -1,6 +1,6 @@
 webpackJsonp([6],{
 
-/***/ 134:
+/***/ 137:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -17,16 +17,105 @@ var Ingredient = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 157:
+/***/ 161:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RecipesPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__edit_recipe_edit_recipe__ = __webpack_require__(92);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__actions_recipe_action__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_redux_store__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_redux_store___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__angular_redux_store__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__actions_ingredient_action__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__recipe_recipe__ = __webpack_require__(162);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+var RecipesPage = /** @class */ (function () {
+    function RecipesPage(navCtrl, recipeActions, ingredientActions, toastCtrl) {
+        this.navCtrl = navCtrl;
+        this.recipeActions = recipeActions;
+        this.ingredientActions = ingredientActions;
+        this.toastCtrl = toastCtrl;
+        recipeActions.loadRecipes();
+    }
+    RecipesPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad RecipesPage');
+    };
+    RecipesPage.prototype.onNewRecipe = function () {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__edit_recipe_edit_recipe__["a" /* EditRecipePage */], { mode: 'New' });
+    };
+    RecipesPage.prototype.onClickToBuyIngredients = function (recipe) {
+        this.ingredientActions.addIngredients(recipe.ingredients);
+        this.presentToast('Ingredients added!');
+    };
+    RecipesPage.prototype.onClickToRemove = function (recipe, idx) {
+        this.recipeActions.removeRecipe(idx);
+        this.presentToast('Recipe deleted');
+    };
+    RecipesPage.prototype.presentToast = function (message, duration, position, showCloseButton, closeButtonText) {
+        if (message === void 0) { message = 'Ok'; }
+        if (duration === void 0) { duration = 3000; }
+        if (position === void 0) { position = 'bottom'; }
+        if (showCloseButton === void 0) { showCloseButton = false; }
+        if (closeButtonText === void 0) { closeButtonText = 'Ok'; }
+        var toast = this.toastCtrl.create({
+            message: message,
+            duration: duration,
+            position: position,
+            showCloseButton: showCloseButton,
+            closeButtonText: closeButtonText
+        });
+        toast.present();
+    };
+    RecipesPage.prototype.onClickViewDescription = function (recipe, index) {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_6__recipe_recipe__["a" /* RecipePage */], { 'recipe': recipe, index: index });
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_4__angular_redux_store__["select"])(),
+        __metadata("design:type", Object)
+    ], RecipesPage.prototype, "recipes", void 0);
+    RecipesPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'page-recipes',template:/*ion-inline-start:"/home/vinmoc/PROJECTS/my-github/ionic3-training/my-recipe-app-s7/src/pages/recipes/recipes.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-buttons start>\n      <button ion-button icon-only menuToggle>\n        <ion-icon name="menu"></ion-icon>\n      </button>\n    </ion-buttons>\n    <ion-buttons end>\n      <button ion-button icon-only (click)="onNewRecipe()">\n        <ion-icon name="add"></ion-icon>\n      </button>\n    </ion-buttons>\n    <ion-title>Recipes</ion-title>\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content padding>\n  <ion-grid *ngIf="!(recipes | async)?.length" style="height: 100%">\n    <ion-row justify-content-center align-items-center style="height: 100%">\n      <ion-col text-center>\n        <p class="no-recipes">Still no recipe added :) </p>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n  <ion-card *ngFor="let recipe of (recipes | async); index as i">\n    <ion-card-content>\n      <ion-card-title>\n        {{recipe.title}}\n        <p>{{recipe.difficulty}}</p>\n      </ion-card-title>\n      <button outline block ion-button small (click)="onClickViewDescription(recipe, i)"> View Details </button>\n    </ion-card-content>\n    <ion-row>\n      <ion-col text-right>\n        <button ion-button clear small (click)="onClickToBuyIngredients(recipe)">Buy Ingredients</button>\n      </ion-col>\n    </ion-row>\n  </ion-card>\n\n</ion-content>\n'/*ion-inline-end:"/home/vinmoc/PROJECTS/my-github/ionic3-training/my-recipe-app-s7/src/pages/recipes/recipes.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_3__actions_recipe_action__["a" /* RecipeActions */],
+            __WEBPACK_IMPORTED_MODULE_5__actions_ingredient_action__["a" /* IngredientActions */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ToastController */]])
+    ], RecipesPage);
+    return RecipesPage;
+}());
+
+//# sourceMappingURL=recipes.js.map
+
+/***/ }),
+
+/***/ 162:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RecipePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__actions_ingredient_action__ = __webpack_require__(57);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__actions_recipe_action__ = __webpack_require__(65);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__edit_recipe_edit_recipe__ = __webpack_require__(90);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__actions_ingredient_action__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__actions_recipe_action__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__edit_recipe_edit_recipe__ = __webpack_require__(92);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -93,11 +182,11 @@ var RecipePage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'page-recipe',template:/*ion-inline-start:"/home/vinmoc/PROJECTS/my-github/ionic3-training/my-recipe-app-s7/src/pages/recipe/recipe.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>{{recipe?.title}}</ion-title>\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content padding>\n  <ion-grid>\n    <ion-row>\n      <ion-col> <h2>{{recipe?.title | uppercase}}</h2></ion-col>\n      <div class="subtitle">{{recipe?.difficulty}}</div>\n    </ion-row>\n    <ion-row>\n      <ion-col>\n        <p>{{recipe?.description}}</p>\n      </ion-col>\n    </ion-row>\n    <ion-row>\n      <ion-col>\n        <ion-list>\n          <ion-item *ngFor="let ingredient of recipe?.ingredients;">\n            <h2>{{ingredient.name}}</h2>\n            <ion-note item-end>{{ingredient.amount}}</ion-note>\n          </ion-item>\n        </ion-list>\n      </ion-col>\n    </ion-row>\n    <ion-row *ngIf="recipe?.ingredients.length > 0">\n      <ion-col>\n        <button ion-button clear small (click)="onClickToBuyIngredients(recipe)">\n          Add Ingredients to Shopping List\n        </button>\n      </ion-col>\n    </ion-row>\n    <ion-row>\n      <ion-col>\n        <button ion-button outline block (click)="onClickEditRecipe(recipe, idx)">Edit</button>\n      </ion-col>\n      <ion-col>\n        <button ion-button outline block color=\'danger\' (click)="onClickDeleteRecipe()">Delete</button>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n</ion-content>\n'/*ion-inline-end:"/home/vinmoc/PROJECTS/my-github/ionic3-training/my-recipe-app-s7/src/pages/recipe/recipe.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */],
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],
             __WEBPACK_IMPORTED_MODULE_2__actions_ingredient_action__["a" /* IngredientActions */],
             __WEBPACK_IMPORTED_MODULE_3__actions_recipe_action__["a" /* RecipeActions */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */]])
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ToastController */]])
     ], RecipePage);
     return RecipePage;
 }());
@@ -106,105 +195,16 @@ var RecipePage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 158:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RecipesPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__edit_recipe_edit_recipe__ = __webpack_require__(90);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__actions_recipe_action__ = __webpack_require__(65);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_redux_store__ = __webpack_require__(45);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_redux_store___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__angular_redux_store__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__actions_ingredient_action__ = __webpack_require__(57);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__recipe_recipe__ = __webpack_require__(157);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-
-
-var RecipesPage = /** @class */ (function () {
-    function RecipesPage(navCtrl, recipeActions, ingredientActions, toastCtrl) {
-        this.navCtrl = navCtrl;
-        this.recipeActions = recipeActions;
-        this.ingredientActions = ingredientActions;
-        this.toastCtrl = toastCtrl;
-        recipeActions.loadRecipes();
-    }
-    RecipesPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad RecipesPage');
-    };
-    RecipesPage.prototype.onNewRecipe = function () {
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__edit_recipe_edit_recipe__["a" /* EditRecipePage */], { mode: 'New' });
-    };
-    RecipesPage.prototype.onClickToBuyIngredients = function (recipe) {
-        this.ingredientActions.addIngredients(recipe.ingredients);
-        this.presentToast('Ingredients added!');
-    };
-    RecipesPage.prototype.onClickToRemove = function (recipe, idx) {
-        this.recipeActions.removeRecipe(idx);
-        this.presentToast('Recipe deleted');
-    };
-    RecipesPage.prototype.presentToast = function (message, duration, position, showCloseButton, closeButtonText) {
-        if (message === void 0) { message = 'Ok'; }
-        if (duration === void 0) { duration = 3000; }
-        if (position === void 0) { position = 'bottom'; }
-        if (showCloseButton === void 0) { showCloseButton = false; }
-        if (closeButtonText === void 0) { closeButtonText = 'Ok'; }
-        var toast = this.toastCtrl.create({
-            message: message,
-            duration: duration,
-            position: position,
-            showCloseButton: showCloseButton,
-            closeButtonText: closeButtonText
-        });
-        toast.present();
-    };
-    RecipesPage.prototype.onClickViewDescription = function (recipe, index) {
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_6__recipe_recipe__["a" /* RecipePage */], { 'recipe': recipe, index: index });
-    };
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_4__angular_redux_store__["select"])(),
-        __metadata("design:type", Object)
-    ], RecipesPage.prototype, "recipes", void 0);
-    RecipesPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-recipes',template:/*ion-inline-start:"/home/vinmoc/PROJECTS/my-github/ionic3-training/my-recipe-app-s7/src/pages/recipes/recipes.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-buttons start>\n      <button ion-button icon-only menuToggle>\n        <ion-icon name="menu"></ion-icon>\n      </button>\n    </ion-buttons>\n    <ion-buttons end>\n      <button ion-button icon-only (click)="onNewRecipe()">\n        <ion-icon name="add"></ion-icon>\n      </button>\n    </ion-buttons>\n    <ion-title>Recipes</ion-title>\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content padding>\n  <ion-grid *ngIf="!(recipes | async)?.length" style="height: 100%">\n    <ion-row justify-content-center align-items-center style="height: 100%">\n      <ion-col text-center>\n        <p class="no-recipes">Still no recipe added :) </p>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n  <ion-card *ngFor="let recipe of (recipes | async); index as i">\n    <ion-card-content>\n      <ion-card-title>\n        {{recipe.title}}\n        <p>{{recipe.difficulty}}</p>\n      </ion-card-title>\n      <button outline block ion-button small (click)="onClickViewDescription(recipe, i)"> View Details </button>\n    </ion-card-content>\n    <ion-row>\n      <ion-col text-right>\n        <button ion-button clear small (click)="onClickToBuyIngredients(recipe)">Buy Ingredients</button>\n      </ion-col>\n    </ion-row>\n  </ion-card>\n\n</ion-content>\n'/*ion-inline-end:"/home/vinmoc/PROJECTS/my-github/ionic3-training/my-recipe-app-s7/src/pages/recipes/recipes.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_3__actions_recipe_action__["a" /* RecipeActions */],
-            __WEBPACK_IMPORTED_MODULE_5__actions_ingredient_action__["a" /* IngredientActions */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */]])
-    ], RecipesPage);
-    return RecipesPage;
-}());
-
-//# sourceMappingURL=recipes.js.map
-
-/***/ }),
-
-/***/ 159:
+/***/ 163:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ShoppingListPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_shopping_list__ = __webpack_require__(160);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_ingredient__ = __webpack_require__(134);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_redux_store__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_shopping_list__ = __webpack_require__(164);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_ingredient__ = __webpack_require__(137);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_redux_store__ = __webpack_require__(58);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_redux_store___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__angular_redux_store__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -278,7 +278,7 @@ var ShoppingListPage = /** @class */ (function () {
             selector: 'page-shopping-list',template:/*ion-inline-start:"/home/vinmoc/PROJECTS/my-github/ionic3-training/my-recipe-app-s7/src/pages/shopping-list/shopping-list.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-buttons start>\n      <button ion-button icon-only menuToggle>\n        <ion-icon name="menu"></ion-icon>\n      </button>\n    </ion-buttons>\n    <ion-title>Shopping List</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <form #f="ngForm" (ngSubmit)="onAddItem(f)" >\n    <ion-list>\n      <ion-item>\n        <ion-label fixed>Name</ion-label>\n        <ion-input type="text" name="ingredientName" placeholder="Milk" [ngModel]="ingredientToEdit.name" required></ion-input>\n      </ion-item>\n      <ion-item>\n        <ion-label fixed>Amount</ion-label>\n        <ion-input type="number" name="amount" placeholder="2" [ngModel]="ingredientToEdit.amount" required></ion-input>\n      </ion-item>\n    </ion-list>\n    <button ion-button type="submit" block [disabled]="!f.valid"> Add Item</button>\n  </form>\n\n  <ion-list>\n    <ion-list-header>\n      Ingredients\n    </ion-list-header>\n\n    <ion-item-sliding *ngFor="let ingredient of ingredients | async; index as i">\n      <ion-item>\n        <h2>{{ingredient.name}}</h2>\n        <ion-note item-end>{{ingredient.amount}}</ion-note>\n      </ion-item>\n      <ion-item-options side="left">\n        <button ion-button color="primary" (click)="onClickRemoveIngredient(i)">\n          <ion-icon name="trash"></ion-icon>\n          Remove\n        </button>\n        <button ion-button color="primary" (click)="onClickEditIngredient(i, ingredient)">\n          <ion-icon name="build"></ion-icon>\n          Edit\n        </button>\n      </ion-item-options>\n    </ion-item-sliding>\n  </ion-list>\n\n</ion-content>\n'/*ion-inline-end:"/home/vinmoc/PROJECTS/my-github/ionic3-training/my-recipe-app-s7/src/pages/shopping-list/shopping-list.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__services_shopping_list__["a" /* ShoppingListService */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */]])
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ToastController */]])
     ], ShoppingListPage);
     return ShoppingListPage;
 }());
@@ -287,13 +287,13 @@ var ShoppingListPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 160:
+/***/ 164:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ShoppingListService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__models_ingredient__ = __webpack_require__(134);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__actions_ingredient_action__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__models_ingredient__ = __webpack_require__(137);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__actions_ingredient_action__ = __webpack_require__(66);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(1);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -340,13 +340,14 @@ var ShoppingListService = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 161:
+/***/ 165:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SigninPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_auth__ = __webpack_require__(318);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -358,34 +359,58 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
 var SigninPage = /** @class */ (function () {
-    function SigninPage(navCtrl, navParams) {
+    function SigninPage(navCtrl, navParams, authService, loadingCtrl, alertCtrl) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
+        this.authService = authService;
+        this.loadingCtrl = loadingCtrl;
+        this.alertCtrl = alertCtrl;
     }
-    SigninPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad SigninPage');
+    SigninPage.prototype.onSignin = function (form) {
+        var _this = this;
+        var loading = this.loadingCtrl.create({
+            content: 'Signing you in...'
+        });
+        loading.present();
+        var _a = form.value, email = _a.email, password = _a.password;
+        this.authService.signin(email, password)
+            .then(function (data) {
+            loading.dismiss();
+        })
+            .catch(function (error) {
+            console.info('firebase error response', error);
+            loading.dismiss();
+            _this.alertCtrl.create({
+                title: "Signin failed",
+                message: error.message,
+                buttons: ['OK']
+            }).present();
+        });
     };
     SigninPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-signin',template:/*ion-inline-start:"/home/vinmoc/PROJECTS/my-github/ionic3-training/my-recipe-app-s7/src/pages/signin/signin.html"*/'<!--\n  Generated template for the SigninPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-buttons start>\n    <button ion-button icon-only menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n  </ion-buttons>\n  <ion-navbar>\n    <ion-title>Signin</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n</ion-content>\n'/*ion-inline-end:"/home/vinmoc/PROJECTS/my-github/ionic3-training/my-recipe-app-s7/src/pages/signin/signin.html"*/,
+            selector: 'page-signin',template:/*ion-inline-start:"/home/vinmoc/PROJECTS/my-github/ionic3-training/my-recipe-app-s7/src/pages/signin/signin.html"*/'<!--\n  Generated template for the SignupPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n    <ion-navbar>\n        <ion-buttons start>\n            <button ion-button icon-only menuToggle>\n                <ion-icon name="menu"></ion-icon>\n            </button>\n        </ion-buttons>\n        <ion-title>Signin</ion-title>\n    </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n    <form #f="ngForm" (ngSubmit)="onSignin(f)">\n        <ion-list>\n            <ion-item>\n                <ion-label fixed> Mail </ion-label>\n                <ion-input type="email" ngModel name="email"></ion-input>\n            </ion-item>\n            <ion-item>\n                <ion-label fixed>Password</ion-label>\n                <ion-input type="password" ngModel name="password" required></ion-input>\n            </ion-item>\n        </ion-list>\n        <button ion-button block type="submit" [disabled]="!f.valid">Signin</button>\n    </form>\n</ion-content>\n'/*ion-inline-end:"/home/vinmoc/PROJECTS/my-github/ionic3-training/my-recipe-app-s7/src/pages/signin/signin.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__services_auth__["a" /* AuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_auth__["a" /* AuthService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* LoadingController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */]) === "function" && _e || Object])
     ], SigninPage);
     return SigninPage;
+    var _a, _b, _c, _d, _e;
 }());
 
 //# sourceMappingURL=signin.js.map
 
 /***/ }),
 
-/***/ 162:
+/***/ 166:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SignupPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_auth__ = __webpack_require__(318);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -397,19 +422,41 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
 var SignupPage = /** @class */ (function () {
-    function SignupPage(navCtrl, navParams) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
+    function SignupPage(authService, loadingCtrl, alertCtrl) {
+        this.authService = authService;
+        this.loadingCtrl = loadingCtrl;
+        this.alertCtrl = alertCtrl;
     }
-    SignupPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad SignupPage');
+    SignupPage.prototype.onSignup = function (form) {
+        var _this = this;
+        var loading = this.loadingCtrl.create({
+            content: 'Signing you up...'
+        });
+        var _a = form.value, email = _a.email, password = _a.password;
+        loading.present();
+        this.authService.signup(email, password)
+            .then(function (data) {
+            loading.dismiss();
+        })
+            .catch(function (error) {
+            console.info('firebase error response', error);
+            loading.dismiss();
+            _this.alertCtrl.create({
+                title: "Signup failed",
+                message: error.message,
+                buttons: ['OK']
+            }).present();
+        });
     };
     SignupPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-signup',template:/*ion-inline-start:"/home/vinmoc/PROJECTS/my-github/ionic3-training/my-recipe-app-s7/src/pages/signup/signup.html"*/'<!--\n  Generated template for the SignupPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-buttons start>\n    <button ion-button icon-only menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n  </ion-buttons>\n  <ion-navbar>\n    <ion-title>Signup</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n</ion-content>\n'/*ion-inline-end:"/home/vinmoc/PROJECTS/my-github/ionic3-training/my-recipe-app-s7/src/pages/signup/signup.html"*/,
+            selector: 'page-signup',template:/*ion-inline-start:"/home/vinmoc/PROJECTS/my-github/ionic3-training/my-recipe-app-s7/src/pages/signup/signup.html"*/'<!--\n  Generated template for the SignupPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar>\n    <ion-buttons start>\n      <button ion-button icon-only menuToggle>\n        <ion-icon name="menu"></ion-icon>\n      </button>\n    </ion-buttons>\n    <ion-title>Signup</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <form #f="ngForm" (ngSubmit)="onSignup(f)">\n    <ion-list>\n      <ion-item>\n        <ion-label floating> Mail </ion-label>\n        <ion-input type="email" ngModel name="email" required></ion-input>\n      </ion-item>\n      <ion-item>\n        <ion-label floating>Password</ion-label>\n        <ion-input type="password" ngModel name="password" required></ion-input>\n      </ion-item>\n      <ion-item>\n        <ion-label floating>Confirm Password</ion-label>\n        <ion-input type="password" ngmodel name="confirmPassword" required></ion-input>\n      </ion-item>\n    </ion-list>\n    <button ion-button block type="submit" [disabled]="!f.valid">Signup</button>\n  </form>\n</ion-content>\n'/*ion-inline-end:"/home/vinmoc/PROJECTS/my-github/ionic3-training/my-recipe-app-s7/src/pages/signup/signup.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__services_auth__["a" /* AuthService */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* LoadingController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */]])
     ], SignupPage);
     return SignupPage;
 }());
@@ -418,7 +465,7 @@ var SignupPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 173:
+/***/ 177:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -431,36 +478,36 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 173;
+webpackEmptyAsyncContext.id = 177;
 
 /***/ }),
 
-/***/ 218:
+/***/ 222:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
 	"../pages/edit-recipe/edit-recipe.module": [
-		705,
+		718,
 		5
 	],
 	"../pages/recipe/recipe.module": [
-		704,
+		720,
 		4
 	],
 	"../pages/recipes/recipes.module": [
-		706,
+		719,
 		3
 	],
 	"../pages/shopping-list/shopping-list.module": [
-		707,
+		721,
 		2
 	],
 	"../pages/signin/signin.module": [
-		708,
+		722,
 		1
 	],
 	"../pages/signup/signup.module": [
-		709,
+		723,
 		0
 	]
 };
@@ -475,18 +522,18 @@ function webpackAsyncContext(req) {
 webpackAsyncContext.keys = function webpackAsyncContextKeys() {
 	return Object.keys(map);
 };
-webpackAsyncContext.id = 218;
+webpackAsyncContext.id = 222;
 module.exports = webpackAsyncContext;
 
 /***/ }),
 
-/***/ 315:
+/***/ 223:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RecipesService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__models_recipe__ = __webpack_require__(680);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__actions_recipe_action__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__models_recipe__ = __webpack_require__(390);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__actions_recipe_action__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(1);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -522,17 +569,110 @@ var RecipesService = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 359:
+/***/ 318:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AuthService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_firebase__ = __webpack_require__(319);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_firebase__);
+
+var AuthService = /** @class */ (function () {
+    function AuthService() {
+    }
+    AuthService.prototype.signup = function (email, password) {
+        return __WEBPACK_IMPORTED_MODULE_0_firebase___default.a.app().auth().createUserWithEmailAndPassword(email, password);
+    };
+    AuthService.prototype.signin = function (email, password) {
+        //var provider = new firebase.auth.GoogleAuthProvider();
+        //provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+        //firebase.auth().signInWithPopup(provider)
+        //    .then(result => console.info('Auth Google Result', result))
+        //    .catch(error => console.info('error', error));
+        return __WEBPACK_IMPORTED_MODULE_0_firebase___default.a.auth().signInWithEmailAndPassword(email, password);
+    };
+    return AuthService;
+}());
+
+//# sourceMappingURL=auth.js.map
+
+/***/ }),
+
+/***/ 364:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TabsPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shopping_list_shopping_list__ = __webpack_require__(159);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__recipes_recipes__ = __webpack_require__(158);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_redux_store__ = __webpack_require__(45);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_redux_store___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__angular_redux_store__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__reducers_recipe_reducer__ = __webpack_require__(702);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shopping_list_shopping_list__ = __webpack_require__(163);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__recipes_recipes__ = __webpack_require__(161);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var TabsPage = /** @class */ (function () {
+    function TabsPage() {
+        this.shoppingListPage = __WEBPACK_IMPORTED_MODULE_1__shopping_list_shopping_list__["a" /* ShoppingListPage */];
+        this.recipesPage = __WEBPACK_IMPORTED_MODULE_2__recipes_recipes__["a" /* RecipesPage */];
+    }
+    TabsPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'page-tabs',
+            template: "\n    <ion-tabs [selectedIndex]=\"1\">\n      <ion-tab [root]=\"shoppingListPage\" tabTitle=\"Shopping List\" tabIcon=\"list-box\"></ion-tab>\n      <ion-tab [root]=\"recipesPage\" tabTitle=\"Recipes\" tabIcon=\"book\"></ion-tab>\n    </ion-tabs>\n  "
+        })
+    ], TabsPage);
+    return TabsPage;
+}());
+
+//# sourceMappingURL=tabs.js.map
+
+/***/ }),
+
+/***/ 365:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(366);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(370);
+
+
+Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
+//# sourceMappingURL=main.js.map
+
+/***/ }),
+
+/***/ 370:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(360);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__ = __webpack_require__(363);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_component__ = __webpack_require__(715);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_tabs_tabs__ = __webpack_require__(364);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_recipe_recipe__ = __webpack_require__(162);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_recipes_recipes__ = __webpack_require__(161);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_shopping_list_shopping_list__ = __webpack_require__(163);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_edit_recipe_edit_recipe__ = __webpack_require__(92);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_shopping_list__ = __webpack_require__(164);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__services_recipes__ = __webpack_require__(223);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__angular_redux_store__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__angular_redux_store___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13__angular_redux_store__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__actions_recipe_action__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__actions_ingredient_action__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_signin_signin__ = __webpack_require__(165);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_signup_signup__ = __webpack_require__(166);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__reducers_recipe_reducer__ = __webpack_require__(716);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__services_auth__ = __webpack_require__(318);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -547,93 +687,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var reduxLogger = __webpack_require__(703);
-var TabsPage = /** @class */ (function () {
-    function TabsPage(store, devTools) {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var reduxLogger = __webpack_require__(717);
+var AppModule = /** @class */ (function () {
+    function AppModule(store, devTools) {
         this.store = store;
         this.devTools = devTools;
-        this.shoppingListPage = __WEBPACK_IMPORTED_MODULE_1__shopping_list_shopping_list__["a" /* ShoppingListPage */];
-        this.recipesPage = __WEBPACK_IMPORTED_MODULE_2__recipes_recipes__["a" /* RecipesPage */];
-        store.configureStore(__WEBPACK_IMPORTED_MODULE_4__reducers_recipe_reducer__["b" /* recipeReducer */], __WEBPACK_IMPORTED_MODULE_4__reducers_recipe_reducer__["a" /* INITIAL_STATE */], [reduxLogger.createLogger()], devTools.isEnabled() ? [devTools.enhancer()] : []);
-    }
-    TabsPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-tabs',
-            template: "\n    <ion-tabs [selectedIndex]=\"1\">\n      <ion-tab [root]=\"shoppingListPage\" tabTitle=\"Shopping List\" tabIcon=\"list-box\"></ion-tab>\n      <ion-tab [root]=\"recipesPage\" tabTitle=\"Recipes\" tabIcon=\"book\"></ion-tab>\n    </ion-tabs>\n  "
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__angular_redux_store__["NgRedux"], __WEBPACK_IMPORTED_MODULE_3__angular_redux_store__["DevToolsExtension"]])
-    ], TabsPage);
-    return TabsPage;
-}());
-
-//# sourceMappingURL=tabs.js.map
-
-/***/ }),
-
-/***/ 360:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(361);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(365);
-
-
-Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
-//# sourceMappingURL=main.js.map
-
-/***/ }),
-
-/***/ 365:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(43);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(355);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__ = __webpack_require__(358);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_component__ = __webpack_require__(701);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_tabs_tabs__ = __webpack_require__(359);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_recipe_recipe__ = __webpack_require__(157);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_recipes_recipes__ = __webpack_require__(158);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_shopping_list_shopping_list__ = __webpack_require__(159);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_edit_recipe_edit_recipe__ = __webpack_require__(90);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_shopping_list__ = __webpack_require__(160);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__services_recipes__ = __webpack_require__(315);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__angular_redux_store__ = __webpack_require__(45);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__angular_redux_store___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13__angular_redux_store__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__actions_recipe_action__ = __webpack_require__(65);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__actions_ingredient_action__ = __webpack_require__(57);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_signin_signin__ = __webpack_require__(161);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_signup_signup__ = __webpack_require__(162);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-var AppModule = /** @class */ (function () {
-    function AppModule() {
+        store.configureStore(__WEBPACK_IMPORTED_MODULE_18__reducers_recipe_reducer__["b" /* recipeReducer */], __WEBPACK_IMPORTED_MODULE_18__reducers_recipe_reducer__["a" /* INITIAL_STATE */], [reduxLogger.createLogger()], devTools.isEnabled() ? [devTools.enhancer()] : []);
     }
     AppModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["NgModule"])({
@@ -652,9 +726,9 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_13__angular_redux_store__["NgReduxModule"],
                 __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* MyApp */], {}, {
                     links: [
-                        { loadChildren: '../pages/recipe/recipe.module#RecipePageModule', name: 'RecipePage', segment: 'recipe', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/edit-recipe/edit-recipe.module#EditRecipePageModule', name: 'EditRecipePage', segment: 'edit-recipe', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/recipes/recipes.module#RecipesPageModule', name: 'RecipesPage', segment: 'recipes', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/recipe/recipe.module#RecipePageModule', name: 'RecipePage', segment: 'recipe', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/shopping-list/shopping-list.module#ShoppingListPageModule', name: 'ShoppingListPage', segment: 'shopping-list', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/signin/signin.module#SigninPageModule', name: 'SigninPage', segment: 'signin', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/signup/signup.module#SignupPageModule', name: 'SignupPage', segment: 'signup', priority: 'low', defaultHistory: [] }
@@ -678,11 +752,13 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_11__services_shopping_list__["a" /* ShoppingListService */],
                 __WEBPACK_IMPORTED_MODULE_12__services_recipes__["a" /* RecipesService */],
                 __WEBPACK_IMPORTED_MODULE_14__actions_recipe_action__["a" /* RecipeActions */],
+                __WEBPACK_IMPORTED_MODULE_19__services_auth__["a" /* AuthService */],
                 __WEBPACK_IMPORTED_MODULE_15__actions_ingredient_action__["a" /* IngredientActions */],
                 { provide: __WEBPACK_IMPORTED_MODULE_1__angular_core__["ErrorHandler"], useClass: __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* IonicErrorHandler */] },
                 __WEBPACK_IMPORTED_MODULE_13__angular_redux_store__["DevToolsExtension"]
             ]
-        })
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_13__angular_redux_store__["NgRedux"], __WEBPACK_IMPORTED_MODULE_13__angular_redux_store__["DevToolsExtension"]])
     ], AppModule);
     return AppModule;
 }());
@@ -691,13 +767,96 @@ var AppModule = /** @class */ (function () {
 
 /***/ }),
 
+/***/ 390:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Recipe; });
+var Recipe = /** @class */ (function () {
+    function Recipe(title, description, difficulty, ingredients) {
+        this.title = title;
+        this.description = description;
+        this.difficulty = difficulty;
+        this.ingredients = ingredients;
+    }
+    return Recipe;
+}());
+
+//# sourceMappingURL=recipe.js.map
+
+/***/ }),
+
 /***/ 57:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RecipeActions; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_redux_store__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_redux_store___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__angular_redux_store__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var RecipeActions = /** @class */ (function () {
+    function RecipeActions() {
+        this.loadRecipes = function () { return ({
+            type: RecipeActions_1.LOAD_RECIPES,
+            meta: null,
+            payload: null
+        }); };
+        this.addRecipes = function (recipes) { return ({
+            type: RecipeActions_1.ADD_RECIPES,
+            meta: null,
+            payload: recipes
+        }); };
+        this.removeRecipe = function (idx) { return ({
+            type: RecipeActions_1.REMOVE_RECIPE,
+            meta: null,
+            payload: idx
+        }); };
+    }
+    RecipeActions_1 = RecipeActions;
+    RecipeActions.LOAD_RECIPES = 'LOAD_RECIPES';
+    RecipeActions.ADD_RECIPES = 'ADD_RECIPES';
+    RecipeActions.REMOVE_RECIPE = 'REMOVE_RECIPE';
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_1__angular_redux_store__["dispatch"])(),
+        __metadata("design:type", Object)
+    ], RecipeActions.prototype, "loadRecipes", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_1__angular_redux_store__["dispatch"])(),
+        __metadata("design:type", Object)
+    ], RecipeActions.prototype, "addRecipes", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_1__angular_redux_store__["dispatch"])(),
+        __metadata("design:type", Object)
+    ], RecipeActions.prototype, "removeRecipe", void 0);
+    RecipeActions = RecipeActions_1 = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])()
+    ], RecipeActions);
+    return RecipeActions;
+    var RecipeActions_1;
+}());
+
+//# sourceMappingURL=recipe.action.js.map
+
+/***/ }),
+
+/***/ 66:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return IngredientActions; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_redux_store__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_redux_store__ = __webpack_require__(58);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_redux_store___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__angular_redux_store__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -765,101 +924,20 @@ var IngredientActions = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 65:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RecipeActions; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_redux_store__ = __webpack_require__(45);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_redux_store___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__angular_redux_store__);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-var RecipeActions = /** @class */ (function () {
-    function RecipeActions() {
-        this.loadRecipes = function () { return ({
-            type: RecipeActions_1.LOAD_RECIPES,
-            meta: null,
-            payload: null
-        }); };
-        this.addRecipes = function (recipes) { return ({
-            type: RecipeActions_1.ADD_RECIPES,
-            meta: null,
-            payload: recipes
-        }); };
-        this.removeRecipe = function (idx) { return ({
-            type: RecipeActions_1.REMOVE_RECIPE,
-            meta: null,
-            payload: idx
-        }); };
-    }
-    RecipeActions_1 = RecipeActions;
-    RecipeActions.LOAD_RECIPES = 'LOAD_RECIPES';
-    RecipeActions.ADD_RECIPES = 'ADD_RECIPES';
-    RecipeActions.REMOVE_RECIPE = 'REMOVE_RECIPE';
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_1__angular_redux_store__["dispatch"])(),
-        __metadata("design:type", Object)
-    ], RecipeActions.prototype, "loadRecipes", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_1__angular_redux_store__["dispatch"])(),
-        __metadata("design:type", Object)
-    ], RecipeActions.prototype, "addRecipes", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_1__angular_redux_store__["dispatch"])(),
-        __metadata("design:type", Object)
-    ], RecipeActions.prototype, "removeRecipe", void 0);
-    RecipeActions = RecipeActions_1 = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])()
-    ], RecipeActions);
-    return RecipeActions;
-    var RecipeActions_1;
-}());
-
-//# sourceMappingURL=recipe.action.js.map
-
-/***/ }),
-
-/***/ 680:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Recipe; });
-var Recipe = /** @class */ (function () {
-    function Recipe(title, description, difficulty, ingredients) {
-        this.title = title;
-        this.description = description;
-        this.difficulty = difficulty;
-        this.ingredients = ingredients;
-    }
-    return Recipe;
-}());
-
-//# sourceMappingURL=recipe.js.map
-
-/***/ }),
-
-/***/ 701:
+/***/ 715:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(358);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(355);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_tabs_tabs__ = __webpack_require__(359);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_signin_signin__ = __webpack_require__(161);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_signup_signup__ = __webpack_require__(162);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(363);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(360);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_tabs_tabs__ = __webpack_require__(364);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_signin_signin__ = __webpack_require__(165);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_signup_signup__ = __webpack_require__(166);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_firebase__ = __webpack_require__(319);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_firebase__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -869,6 +947,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -882,6 +961,15 @@ var MyApp = /** @class */ (function () {
         this.tabsPage = __WEBPACK_IMPORTED_MODULE_4__pages_tabs_tabs__["a" /* TabsPage */];
         this.signinPage = __WEBPACK_IMPORTED_MODULE_5__pages_signin_signin__["a" /* SigninPage */];
         this.signupPage = __WEBPACK_IMPORTED_MODULE_6__pages_signup_signup__["a" /* SignupPage */];
+        __WEBPACK_IMPORTED_MODULE_7_firebase___default.a.initializeApp({
+            apiKey: "AIzaSyBwq-K9FqQuzouyj7fp1ymJMCyQnREl2Zk",
+            authDomain: "ionic3-training.firebaseapp.com",
+            databaseURL: "https://ionic3-training.firebaseio.com",
+            projectId: "ionic3-training",
+            storageBucket: "ionic3-training.appspot.com",
+            messagingSenderId: "174354866330"
+        });
+        __WEBPACK_IMPORTED_MODULE_7_firebase___default.a.auth().languageCode = 'it';
         platform.ready().then(function () {
             statusBar.styleDefault();
             splashScreen.hide();
@@ -893,31 +981,29 @@ var MyApp = /** @class */ (function () {
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('nav'),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */])
+        __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */]) === "function" && _a || Object)
     ], MyApp.prototype, "navCtrl", void 0);
     MyApp = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"/home/vinmoc/PROJECTS/my-github/ionic3-training/my-recipe-app-s7/src/app/app.html"*/'<ion-menu [content]="nav">\n    <ion-header>\n        <ion-toolbar>\n            <ion-title>Menu</ion-title>\n        </ion-toolbar>\n    </ion-header>\n    <ion-content>\n        <ion-list>\n            <button ion-item icon-left (click)="onLoad(tabsPage)">\n                <ion-icon name="book" item-left></ion-icon>\n                Recipe Book\n            </button>\n            <button ion-item icon-left>\n                <ion-icon name="log-in" item-left (click)="onLoad(signinPage)"></ion-icon>\n                Log-in\n            </button>\n            <button ion-item (click)="onLoad(signupPage)">\n                <ion-icon name="person" item-left></ion-icon>\n                Sign up\n            </button>\n            <button ion-item icon-left (click)="onLogout()">\n                <ion-icon name="log-out" item-left></ion-icon>\n                Logout\n            </button>\n        </ion-list>\n    </ion-content>\n</ion-menu>\n<ion-nav [root]="tabsPage" #nav></ion-nav>\n'/*ion-inline-end:"/home/vinmoc/PROJECTS/my-github/ionic3-training/my-recipe-app-s7/src/app/app.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"/home/vinmoc/PROJECTS/my-github/ionic3-training/my-recipe-app-s7/src/app/app.html"*/'<ion-menu [content]="nav">\n    <ion-header>\n        <ion-toolbar>\n            <ion-title>Menu</ion-title>\n        </ion-toolbar>\n    </ion-header>\n    <ion-content>\n        <ion-list>\n            <button ion-item icon-left (click)="onLoad(tabsPage)">\n                <ion-icon name="book" item-left></ion-icon>\n                Recipe Book\n            </button>\n            <button ion-item icon-left (click)="onLoad(signinPage)">\n                <ion-icon name="log-in" item-left></ion-icon>\n                Log-in\n            </button>\n            <button ion-item (click)="onLoad(signupPage)">\n                <ion-icon name="person" item-left></ion-icon>\n                Sign up\n            </button>\n            <button ion-item icon-left (click)="onLogout()">\n                <ion-icon name="log-out" item-left></ion-icon>\n                Logout\n            </button>\n        </ion-list>\n    </ion-content>\n</ion-menu>\n<ion-nav [root]="tabsPage" #nav></ion-nav>\n'/*ion-inline-end:"/home/vinmoc/PROJECTS/my-github/ionic3-training/my-recipe-app-s7/src/app/app.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Platform */],
-            __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */],
-            __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* MenuController */]])
+        __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* Platform */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* MenuController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* MenuController */]) === "function" && _e || Object])
     ], MyApp);
     return MyApp;
+    var _a, _b, _c, _d, _e;
 }());
 
 //# sourceMappingURL=app.component.js.map
 
 /***/ }),
 
-/***/ 702:
+/***/ 716:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return INITIAL_STATE; });
 /* harmony export (immutable) */ __webpack_exports__["b"] = recipeReducer;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__actions_recipe_action__ = __webpack_require__(65);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__actions_ingredient_action__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__actions_recipe_action__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__actions_ingredient_action__ = __webpack_require__(66);
 
 
 var INITIAL_STATE = {
@@ -974,16 +1060,16 @@ function recipeReducer(state, action) {
 
 /***/ }),
 
-/***/ 90:
+/***/ 92:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EditRecipePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_recipes__ = __webpack_require__(315);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__models_ingredient__ = __webpack_require__(134);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_recipes__ = __webpack_require__(223);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__models_ingredient__ = __webpack_require__(137);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1134,11 +1220,11 @@ var EditRecipePage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'page-edit-recipe',template:/*ion-inline-start:"/home/vinmoc/PROJECTS/my-github/ionic3-training/my-recipe-app-s7/src/pages/edit-recipe/edit-recipe.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>{{ mode }} Recipe</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">\n    <ion-list>\n      <ion-item>\n        <ion-label floating> Title </ion-label>\n        <ion-input type="text" formControlName="title"></ion-input>\n      </ion-item>\n      <ion-item>\n        <ion-label floating> Description</ion-label>\n        <ion-textarea formControlName="description"></ion-textarea>\n      </ion-item>\n      <ion-item>\n        <ion-label floating> Difficulty</ion-label>\n        <ion-select formControlName="difficulty">\n          <ion-option *ngFor="let option of selectOptions" [value]="option">{{option}}</ion-option>\n        </ion-select>\n      </ion-item>\n    </ion-list>\n    <button ion-button type="button" clear block (click)="onManageIngredients()">Manage Ingredents</button>\n    <ion-list formArrayName="ingredients">\n      <ion-item *ngFor="let igControl of recipeForm.get(\'ingredients\').controls; let i = index">\n        <ion-label>Name</ion-label>\n        <ion-input type="text" [formControlName]="i" floating></ion-input>\n      </ion-item>\n    </ion-list>\n    <button type="submit" ion-button block>{{mode}} Recipe</button>\n  </form>\n</ion-content>\n'/*ion-inline-end:"/home/vinmoc/PROJECTS/my-github/ionic3-training/my-recipe-app-s7/src/pages/edit-recipe/edit-recipe.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* ActionSheetController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ToastController */],
             __WEBPACK_IMPORTED_MODULE_3__services_recipes__["a" /* RecipesService */]])
     ], EditRecipePage);
     return EditRecipePage;
@@ -1148,5 +1234,5 @@ var EditRecipePage = /** @class */ (function () {
 
 /***/ })
 
-},[360]);
+},[365]);
 //# sourceMappingURL=main.js.map

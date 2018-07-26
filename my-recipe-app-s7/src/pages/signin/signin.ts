@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {AlertController, IonicPage, LoadingController, NavController, NavParams} from 'ionic-angular';
+import {AuthService} from "../../services/auth";
+import {NgForm} from "@angular/forms";
 
 @IonicPage()
 @Component({
@@ -8,11 +10,32 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class SigninPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              private authService: AuthService,
+              private loadingCtrl: LoadingController,
+              private alertCtrl: AlertController) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad SigninPage');
+  onSignin(form: NgForm) {
+      const loading = this.loadingCtrl.create({
+          content: 'Signing you in...'
+      });
+      loading.present();
+    const {email, password} = form.value;
+    this.authService.signin(email,password)
+        .then(data => {
+            loading.dismiss();
+        })
+        .catch(error =>  {
+            console.info('firebase error response', error);
+            loading.dismiss();
+            this.alertCtrl.create({
+                title: "Signin failed",
+                message: error.message,
+                buttons: ['OK']
+            }).present()
+        });
   }
 
 }

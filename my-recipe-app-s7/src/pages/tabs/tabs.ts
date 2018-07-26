@@ -5,10 +5,6 @@ import {DevToolsExtension, NgRedux} from "@angular-redux/store";
 import {INITIAL_STATE, recipeReducer} from "../../reducers/recipe.reducer";
 import {MyRecipeState} from "../../models/store";
 
-declare var require;
-
-var reduxLogger = require("redux-logger");
-
 @Component({
   selector: 'page-tabs',
   template: `
@@ -19,18 +15,6 @@ var reduxLogger = require("redux-logger");
   `
 })
 export class TabsPage {
-
   shoppingListPage: any = ShoppingListPage;
   recipesPage: any = RecipesPage;
-
-  constructor(public store: NgRedux<MyRecipeState>, public devTools: DevToolsExtension) {
-    store.configureStore(
-      recipeReducer,
-      INITIAL_STATE,
-      [reduxLogger.createLogger()],
-      devTools.isEnabled() ? [devTools.enhancer() ]: []
-    );
-  }
-
-
 }

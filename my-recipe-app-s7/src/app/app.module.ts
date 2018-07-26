@@ -12,11 +12,16 @@ import {ShoppingListPage} from "../pages/shopping-list/shopping-list";
 import {EditRecipePage} from "../pages/edit-recipe/edit-recipe";
 import {ShoppingListService} from "../services/shopping-list";
 import {RecipesService} from "../services/recipes";
-import {DevToolsExtension, NgReduxModule} from "@angular-redux/store";
+import {DevToolsExtension, NgRedux, NgReduxModule} from "@angular-redux/store";
 import {RecipeActions} from "../actions/recipe.action";
 import {IngredientActions} from "../actions/ingredient.action";
 import {SigninPage} from "../pages/signin/signin";
 import {SignupPage} from "../pages/signup/signup";
+import {INITIAL_STATE, recipeReducer} from "../reducers/recipe.reducer";
+import {MyRecipeState} from "../models/store";
+import {AuthService} from "../services/auth";
+declare var require;
+var reduxLogger = require("redux-logger");
 
 @NgModule({
     declarations: [
@@ -51,10 +56,21 @@ import {SignupPage} from "../pages/signup/signup";
         ShoppingListService,
         RecipesService,
         RecipeActions,
+        AuthService,
         IngredientActions,
         {provide: ErrorHandler, useClass: IonicErrorHandler},
         DevToolsExtension
     ]
 })
 export class AppModule {
+
+
+    constructor(public store: NgRedux<MyRecipeState>, public devTools: DevToolsExtension) {
+        store.configureStore(
+            recipeReducer,
+            INITIAL_STATE,
+            [reduxLogger.createLogger()],
+            devTools.isEnabled() ? [devTools.enhancer() ]: []
+        );
+    }
 }
