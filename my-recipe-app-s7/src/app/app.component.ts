@@ -22,7 +22,7 @@ export class MyApp {
               private menuCtrl: MenuController) {
 
     firebase.initializeApp({
-        apiKey: "AIzaSyBwq-K9FqQuzouyj7fp1ymJMCyQnREl2Zk",
+        apiKey: "AIzaSyBwq-****************************",
         authDomain: "ionic3-training.firebaseapp.com",
         databaseURL: "https://ionic3-training.firebaseio.com",
         projectId: "ionic3-training",
