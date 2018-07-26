@@ -1,1 +1,28 @@
+<ion-menu [content]="nav">
+    <ion-header>
+        <ion-toolbar>
+            <ion-title>Menu</ion-title>
+        </ion-toolbar>
+    </ion-header>
+    <ion-content>
+        <ion-list>
+            <button ion-item icon-left (click)="onLoad(tabsPage)">
+                <ion-icon name="book" item-left></ion-icon>
+                Recipe Book
+            </button>
+            <button ion-item icon-left>
+                <ion-icon name="log-in" item-left (click)="onLoad(signinPage)"></ion-icon>
+                Log-in
+            </button>
+            <button ion-item (click)="onLoad(signupPage)">
+                <ion-icon name="person" item-left></ion-icon>
+                Sign up
+            </button>
+            <button ion-item icon-left (click)="onLogout()">
+                <ion-icon name="log-out" item-left></ion-icon>
+                Logout
+            </button>
+        </ion-list>
+    </ion-content>
+</ion-menu>
 <ion-nav [root]="tabsPage" #nav></ion-nav>

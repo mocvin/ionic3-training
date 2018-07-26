@@ -1,14 +1,16 @@
 webpackJsonp([2],{
 
-/***/ 703:
+/***/ 707:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RecipePageModule", function() { return RecipePageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ShoppingListPageModule", function() { return ShoppingListPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__recipe__ = __webpack_require__(157);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shopping_list__ = __webpack_require__(159);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_shopping_list__ = __webpack_require__(160);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,23 +20,29 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var RecipePageModule = /** @class */ (function () {
-    function RecipePageModule() {
+
+
+var ShoppingListPageModule = /** @class */ (function () {
+    function ShoppingListPageModule() {
     }
-    RecipePageModule = __decorate([
+    ShoppingListPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__recipe__["a" /* RecipePage */],
+                __WEBPACK_IMPORTED_MODULE_2__shopping_list__["a" /* ShoppingListPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__recipe__["a" /* RecipePage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__shopping_list__["a" /* ShoppingListPage */]),
+                __WEBPACK_IMPORTED_MODULE_3__angular_forms__["d" /* FormsModule */]
             ],
+            providers: [
+                __WEBPACK_IMPORTED_MODULE_4__services_shopping_list__["a" /* ShoppingListService */]
+            ]
         })
-    ], RecipePageModule);
-    return RecipePageModule;
+    ], ShoppingListPageModule);
+    return ShoppingListPageModule;
 }());
 
-//# sourceMappingURL=recipe.module.js.map
+//# sourceMappingURL=shopping-list.module.js.map
 
 /***/ })
 

@@ -1,14 +1,14 @@
 webpackJsonp([3],{
 
-/***/ 702:
+/***/ 706:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EditRecipePageModule", function() { return EditRecipePageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RecipesPageModule", function() { return RecipesPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__edit_recipe__ = __webpack_require__(90);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__recipes__ = __webpack_require__(158);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,23 +18,23 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var EditRecipePageModule = /** @class */ (function () {
-    function EditRecipePageModule() {
+var RecipesPageModule = /** @class */ (function () {
+    function RecipesPageModule() {
     }
-    EditRecipePageModule = __decorate([
+    RecipesPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__edit_recipe__["a" /* EditRecipePage */],
+                __WEBPACK_IMPORTED_MODULE_2__recipes__["a" /* RecipesPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__edit_recipe__["a" /* EditRecipePage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__recipes__["a" /* RecipesPage */]),
             ],
         })
-    ], EditRecipePageModule);
-    return EditRecipePageModule;
+    ], RecipesPageModule);
+    return RecipesPageModule;
 }());
 
-//# sourceMappingURL=edit-recipe.module.js.map
+//# sourceMappingURL=recipes.module.js.map
 
 /***/ })
 
