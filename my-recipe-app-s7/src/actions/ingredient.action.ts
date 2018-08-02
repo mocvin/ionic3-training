@@ -1,7 +1,6 @@
 import {FluxStandardAction} from "flux-standard-action";
 import {Injectable} from "@angular/core";
 import {dispatch} from "@angular-redux/store";
-import {RecipeRemoveAction} from "./recipe.action";
 import {AddPayload, IdxPayload, IngredientAddMetadata} from "../models/store";
 import {Ingredient} from "../models/ingredient";
 

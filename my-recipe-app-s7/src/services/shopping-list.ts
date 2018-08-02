@@ -13,7 +13,6 @@ import 'rxjs/add/observable/fromPromise';
 export class ShoppingListService {
 
     constructor(private ingredientActions: IngredientActions,
-                private http: HttpClient,
                 private ngRedux: NgRedux<MyRecipeState>,
                 private authService: AuthService) {
     }

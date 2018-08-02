@@ -21,8 +21,6 @@ import {INITIAL_STATE, recipeReducer} from "../reducers/recipe.reducer";
 import {MyRecipeState} from "../models/store";
 import {AuthService} from "../services/auth";
 import {SiOptionsPage} from "../pages/shopping-list/si-options/si-options";
-import {HttpModule} from "@angular/http";
-import {HttpClientModule} from "@angular/common/http";
 import {RecipesOptionsPage} from "../pages/recipes/recipes-options/recipes-options";
 declare var require;
 var reduxLogger = require("redux-logger");
@@ -43,7 +41,6 @@ var reduxLogger = require("redux-logger");
     imports: [
         BrowserModule,
         NgReduxModule,
-        HttpClientModule,
         IonicModule.forRoot(MyApp)
     ],
     bootstrap: [IonicApp],
