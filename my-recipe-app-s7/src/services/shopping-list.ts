@@ -43,7 +43,7 @@ export class ShoppingListService {
             });
     }
 
-    storeList(token: string) {
+    storeList() {
         const userId = this.authService.getActiveUser().uid;
         let ingredients = this.ngRedux.getState().ingredients;
         let shoppingListRef = firebase.database()

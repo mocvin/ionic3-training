@@ -3,10 +3,9 @@ import {IonicPage, Loading, LoadingController, PopoverController, ToastControlle
 import {NgForm} from "@angular/forms";
 import {ShoppingListService} from "../../services/shopping-list";
 import {Ingredient} from "../../models/ingredient";
-import {NgRedux, select} from "@angular-redux/store";
+import {select} from "@angular-redux/store";
 import {SiOptionsPage} from "./si-options/si-options";
 import {AuthService} from "../../services/auth";
-import {MyRecipeState} from "../../models/store";
 import {Observable} from "rxjs/Observable";
 import {Subscription} from "rxjs/Subscription";
 
@@ -58,7 +57,6 @@ export class ShoppingListPage {
             showCloseButton,
             closeButtonText
         });
-
         toast.present();
     }
 
@@ -81,11 +79,8 @@ export class ShoppingListPage {
             if (data.action == 'load') {
                 this.slService.getItems();
             } else {
-                this.authService.getActiveUser().getIdToken()
-                    .then((idToken: string) => {
-                        this.slService.storeList(idToken)
-                            .then(() => this.presentToast('List stored.'))
-                    })
+                this.slService.storeList()
+                    .then(() => this.presentToast('List stored.'))
             }
         });
     }

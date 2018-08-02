@@ -8,6 +8,7 @@ import {SignupPage} from "../pages/signup/signup";
 import firebase from 'firebase';
 import {AuthService} from "../services/auth";
 import {ShoppingListService} from "../services/shopping-list";
+import {RecipesService} from "../services/recipes";
 
 @Component({
     templateUrl: 'app.html'
@@ -24,8 +25,9 @@ export class MyApp {
     constructor(platform: Platform,
                 statusBar: StatusBar,
                 splashScreen: SplashScreen,
-                private authService: AuthService,
+                public authService: AuthService,
                 private slService: ShoppingListService,
+                private recipeService: RecipesService,
                 private menuCtrl: MenuController) {
 
         firebase.initializeApp({
@@ -45,6 +47,8 @@ export class MyApp {
                 this.isAuthenticated = true;
                this.rootPage = TabsPage;
                this.slService.getItems();
+               this.recipeService.getRecipes();
+
             } else {
                 this.isAuthenticated = false;
                 this.rootPage = SigninPage;

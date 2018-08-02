@@ -23,6 +23,7 @@ import {AuthService} from "../services/auth";
 import {SiOptionsPage} from "../pages/shopping-list/si-options/si-options";
 import {HttpModule} from "@angular/http";
 import {HttpClientModule} from "@angular/common/http";
+import {RecipesOptionsPage} from "../pages/recipes/recipes-options/recipes-options";
 declare var require;
 var reduxLogger = require("redux-logger");
 
@@ -36,7 +37,8 @@ var reduxLogger = require("redux-logger");
         EditRecipePage,
         SigninPage,
         SignupPage,
-        SiOptionsPage
+        SiOptionsPage,
+        RecipesOptionsPage
     ],
     imports: [
         BrowserModule,
@@ -54,7 +56,8 @@ var reduxLogger = require("redux-logger");
         EditRecipePage,
         SigninPage,
         SignupPage,
-        SiOptionsPage
+        SiOptionsPage,
+        RecipesOptionsPage
     ],
     providers: [
         StatusBar,

@@ -9,7 +9,6 @@ import {
 } from "../actions/ingredient.action";
 import {Recipe} from "../models/recipe";
 import {Ingredient} from "../models/ingredient";
-import {dispatch} from "@angular-redux/store";
 
 export const INITIAL_STATE: MyRecipeState = {
     recipes: [],
@@ -27,6 +26,14 @@ export const INITIAL_STATE: MyRecipeState = {
 export function recipeReducer(state: MyRecipeState = INITIAL_STATE, action: Action): MyRecipeState {
 
     switch (action.type) {
+        case RecipeActions.LOAD_RECIPES_BEGIN:
+            return Object.assign({}, state, {
+                loading: true
+            });
+        case RecipeActions.LOAD_RECIPES_FINISHED:
+            return Object.assign({}, state, {
+                loading: false
+            });
         case RecipeActions.LOAD_RECIPES:
             return state;
         case RecipeActions.ADD_RECIPES:
@@ -42,6 +49,10 @@ export function recipeReducer(state: MyRecipeState = INITIAL_STATE, action: Acti
                 recipes: copy
             });
         }
+        case RecipeActions.REMOVE_ALL_RECIPES:
+            return Object.assign({}, state, {
+                recipes: []
+            });
         case IngredientActions.LOAD_INGREDIENTS_BEGIN:
             return Object.assign({}, state, {
                 loading: true

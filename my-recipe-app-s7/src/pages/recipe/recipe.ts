@@ -1,10 +1,18 @@
 import { Component } from '@angular/core';
-import {IonicPage, NavController, NavParams, ToastController} from 'ionic-angular';
+import {
+    IonicPage,
+    LoadingController,
+    NavController,
+    NavParams,
+    PopoverController,
+    ToastController
+} from 'ionic-angular';
 import {Recipe} from "../../models/recipe";
 import {Ingredient} from "../../models/ingredient";
 import {IngredientActions} from "../../actions/ingredient.action";
 import {RecipeActions} from "../../actions/recipe.action";
 import {EditRecipePage} from "../edit-recipe/edit-recipe";
+import {AuthService} from "../../services/auth";
 
 /**
  * Generated class for the RecipePage page.
@@ -25,8 +33,8 @@ export class RecipePage {
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              public ingredientActions: IngredientActions,
-              public recipeActions: RecipeActions,
+              private ingredientActions: IngredientActions,
+              private recipeActions: RecipeActions,
               public toastCtrl: ToastController) {
   }
 
