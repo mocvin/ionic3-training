@@ -2,7 +2,7 @@
 
 This repo contains the Ionic App developed during the udemy's course
 **Ionic 2/ Ionic 3 - Build iOS & Android Apps with Angular by Maximilian Schwarzmüller** in the Section 7.
-Unlike the original tutorial, to implement it I used Redux, a framework for the `app state management`.
+Unlike the original tutorial, to implement it I used Redux, a framework for the `app state management` and firebase' sdk for storing and loading data from database.
 
 ## Prerequisites
 Follow the link for [Installing Ionic 3](https://ionicframework.com/docs/intro/installation/ )
