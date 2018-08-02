@@ -4,10 +4,10 @@ import {NgForm} from "@angular/forms";
 import {ShoppingListService} from "../../services/shopping-list";
 import {Ingredient} from "../../models/ingredient";
 import {select} from "@angular-redux/store";
-import {SiOptionsPage} from "./si-options/si-options";
 import {AuthService} from "../../services/auth";
 import {Observable} from "rxjs/Observable";
 import {Subscription} from "rxjs/Subscription";
+import {DatabaseOptionsPage} from "../database-options/database-options";
 
 @IonicPage()
 @Component({
@@ -72,7 +72,7 @@ export class ShoppingListPage {
     }
 
     onShowOptions(event: MouseEvent) {
-        const popover = this.popoverCtrl.create(SiOptionsPage);
+        const popover = this.popoverCtrl.create(DatabaseOptionsPage);
         popover.present({ev: event});
 
         popover.onDidDismiss(data => {

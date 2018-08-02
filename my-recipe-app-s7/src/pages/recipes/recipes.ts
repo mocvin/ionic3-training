@@ -13,10 +13,10 @@ import {Recipe} from "../../models/recipe";
 import {IngredientActions} from "../../actions/ingredient.action";
 import {RecipePage} from "../recipe/recipe";
 import {AuthService} from "../../services/auth";
-import {SiOptionsPage} from "../shopping-list/si-options/si-options";
 import {RecipesService} from "../../services/recipes";
 import {Observable} from "rxjs/Observable";
 import {Subscription} from "rxjs/Subscription";
+import {DatabaseOptionsPage} from "../database-options/database-options";
 
 @IonicPage()
 @Component({
@@ -79,7 +79,7 @@ export class RecipesPage {
     }
 
     onShowOptions(event: MouseEvent) {
-        const popover = this.popoverCtrl.create(SiOptionsPage);
+        const popover = this.popoverCtrl.create(DatabaseOptionsPage);
         popover.present({ev: event});
         popover.onDidDismiss(data => {
             if (data.action == 'load') {
