@@ -2,7 +2,6 @@ import firebase from 'firebase';
 
 export class AuthService {
 
-
     signup(email:string, password:string) {
         return firebase.app().auth().createUserWithEmailAndPassword(email, password);
     }
@@ -14,7 +13,14 @@ export class AuthService {
         //    .then(result => console.info('Auth Google Result', result))
         //    .catch(error => console.info('error', error));
         return firebase.auth().signInWithEmailAndPassword(email, password);
+    }
 
+    logout() {
+        firebase.auth().signOut()
+    }
+
+    getActiveUser() {
+        return firebase.auth().currentUser;
     }
 
 }

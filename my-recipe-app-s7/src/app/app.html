@@ -6,7 +6,7 @@
     </ion-header>
     <ion-content>
         <ion-list>
-            <button ion-item icon-left (click)="onLoad(tabsPage)">
+            <button ion-item icon-left (click)="onLoad(rootPage)">
                 <ion-icon name="book" item-left></ion-icon>
                 Recipe Book
             </button>
@@ -25,4 +25,4 @@
         </ion-list>
     </ion-content>
 </ion-menu>
-<ion-nav [root]="tabsPage" #nav></ion-nav>
+<ion-nav [root]="rootPage" #nav></ion-nav>

@@ -4,6 +4,7 @@ import {Ingredient} from "./ingredient";
 export interface MyRecipeState {
   recipes: Recipe[];
   ingredients: Ingredient[];
+  loading: boolean;
 }
 export type idx = number;
 

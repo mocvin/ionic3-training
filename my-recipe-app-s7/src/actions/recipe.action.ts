@@ -11,7 +11,9 @@ export type RecipeRemoveAction = FluxStandardAction<IdxPayload, null>;
 @Injectable()
 export class RecipeActions {
 
+  static readonly LOAD_RECIPES_BEGIN = 'LOAD_RECIPES_BEGIN';
   static readonly LOAD_RECIPES = 'LOAD_RECIPES';
+  static readonly LOAD_RECIPES_FINISHED = 'LOAD_RECIPES_FINISHED';
   static readonly ADD_RECIPES = 'ADD_RECIPES';
   static readonly REMOVE_RECIPE = 'REMOVE_RECIPE';
 
