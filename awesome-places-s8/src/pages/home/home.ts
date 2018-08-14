@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import {AddPlacePage} from "../add-place/add-place";
 
 @Component({
   selector: 'page-home',
@@ -7,6 +8,7 @@ import { NavController } from 'ionic-angular';
 })
 export class HomePage {
 
+  addPlacePage: any = AddPlacePage;
   constructor(public navCtrl: NavController) {
 
   }

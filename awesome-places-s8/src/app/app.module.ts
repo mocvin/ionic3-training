@@ -13,10 +13,10 @@ import {SetLocationPage} from "../pages/set-location/set-location";
 import {PlaceActions} from "../redux/actions/place.actions";
 import {LoadingActions} from "../redux/actions/loading.actions";
 import {combineReducers} from "redux";
-import {loadingReducer} from "../redux/reducers/loading.reducer";
-import {AwesomePlaceState, LOADING_INITIAL_STATE, PLACE_INITIAL_STATE} from "../redux/state";
-import {placeReducer} from "../redux/reducers/place.reducer";
-
+import {loadingReducer as loading} from "../redux/reducers/loading.reducer";
+import {placeReducer as places} from "../redux/reducers/place.reducer";
+import {AwesomePlaceState, INITIAL_STATE} from "../redux/state";
+import {AgmCoreModule} from "@agm/core";
 declare var require;
 var reduxLogger = require("redux-logger");
 
@@ -31,6 +31,9 @@ var reduxLogger = require("redux-logger");
   imports: [
     BrowserModule,
     NgReduxModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBwq-K9FqQuzouyj7fp1ymJMCyQnREl2Zk',
+    }),
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -51,11 +54,11 @@ var reduxLogger = require("redux-logger");
   ]
 })
 export class AppModule {
-
   constructor(public store: NgRedux<AwesomePlaceState>, public devTools: DevToolsExtension) {
+    let rootReducer = combineReducers({loading, places});
     store.configureStore(
-      combineReducers({loading: loadingReducer, places: placeReducer}),
-      {...LOADING_INITIAL_STATE, ...PLACE_INITIAL_STATE},
+      rootReducer,
+      INITIAL_STATE,
       [reduxLogger.createLogger()],
       devTools.isEnabled() ? [devTools.enhancer() ]: []
     );

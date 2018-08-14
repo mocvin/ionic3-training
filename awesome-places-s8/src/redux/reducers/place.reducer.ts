@@ -1,13 +1,14 @@
-import {PLACE_INITIAL_STATE, PlaceState} from "../state";
+import {AwesomePlaceState} from "../state";
 import {Action} from "redux";
 import {PlaceActions} from "../actions/place.actions";
+import {Place} from "../../models/place";
 
-export function placeReducer(state: PlaceState = PLACE_INITIAL_STATE,
-                               action: Action): PlaceState  {
+export function placeReducer(state: Place[],
+                               action: Action): Place[]  {
 
   switch (action.type) {
     case PlaceActions.LOAD_PLACES:
-      return { places: []};
+      return [];
+    default: return [];
   }
-  return state;
 }

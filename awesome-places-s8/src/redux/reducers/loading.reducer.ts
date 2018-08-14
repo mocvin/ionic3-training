@@ -1,15 +1,15 @@
-import {LOADING_INITIAL_STATE, LoadingState} from "../state";
 import {Action} from "redux";
 import {LoadingActions} from "../actions/loading.actions";
+import {AwesomePlaceState} from "../state";
 
-export function loadingReducer(state: LoadingState = LOADING_INITIAL_STATE,
-                               action: Action): LoadingState  {
+export function loadingReducer( state: false ,
+                               action: Action): boolean  {
 
   switch (action.type) {
     case LoadingActions.LOADING_BEGIN:
-      return { loading: true};
+      return false;
     case LoadingActions.LOADING_FINISHED:
-      return { loading: false}
+      return true;
+    default: return false;
   }
-  return state;
 }
