@@ -11,7 +11,13 @@
 <ion-grid>
   <ion-row>
     <ion-col>
-      <agm-map></agm-map>
+      <agm-map
+        [latitude]="location.lat"
+        [longitude]="location.lng"
+        [zoom]=16
+        (mapClick)="onSetMarker($event)">
+        <agm-marker [latitude]="marker.lat" [longitude]="marker.lng" *ngIf="marker"></agm-marker>
+      </agm-map>
     </ion-col>
   </ion-row>
 </ion-grid>

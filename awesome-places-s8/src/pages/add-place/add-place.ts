@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {IonicPage, ModalController, NavController, NavParams} from 'ionic-angular';
 import {NgForm} from "@angular/forms";
 import {SetLocationPage} from "../set-location/set-location";
+import {Location} from "../../models/location";
 
 /**
  * Generated class for the AddPlacePage page.
@@ -17,6 +18,11 @@ import {SetLocationPage} from "../set-location/set-location";
 })
 export class AddPlacePage {
 
+  location: Location = {
+    lat: 40.7624324,
+    lng: -73.9759827
+  };
+
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public modalCtrl: ModalController) {
@@ -30,7 +36,7 @@ export class AddPlacePage {
   }
 
   onOpenMap() {
-    const modal = this.modalCtrl.create(SetLocationPage);
+    const modal = this.modalCtrl.create(SetLocationPage, {location: this.location});
     modal.present();
   }
 }
