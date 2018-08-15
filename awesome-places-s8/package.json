@@ -1,7 +1,7 @@
 {
   "name": "awesome-places-s8",
-  "version": "0.0.1",
-  "author": "Ionic Framework",
+  "version": "1.0.0",
+  "author": "Vincenzo Moccia <me@mocciavincenzo.it>",
   "homepage": "http://ionicframework.com/",
   "private": true,
   "scripts": {
@@ -39,5 +39,6 @@
     "@ionic/app-scripts": "3.1.11",
     "typescript": "~2.6.2"
   },
-  "description": "An Ionic project"
+
+  "description": "Awesome Places (with Redux)"
 }
