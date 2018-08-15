@@ -2,7 +2,7 @@
   "name": "awesome-places-s8",
   "version": "1.0.0",
   "author": "Vincenzo Moccia <me@mocciavincenzo.it>",
-  "homepage": "http://ionicframework.com/",
+  "homepage": "http://www.mocciavincenzo.it",
   "private": true,
   "scripts": {
     "start": "ionic-app-scripts serve",
