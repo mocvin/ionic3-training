@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import {IonicPage, ModalController, NavController, NavParams} from 'ionic-angular';
+import {IonicPage, LoadingController, ModalController, NavController, NavParams, ToastController} from 'ionic-angular';
 import {NgForm} from "@angular/forms";
 import {SetLocationPage} from "../set-location/set-location";
 import {Location} from "../../models/location";
+import {Geolocation} from "@ionic-native/geolocation";
 
 /**
  * Generated class for the AddPlacePage page.
@@ -27,7 +28,10 @@ export class AddPlacePage {
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              public modalCtrl: ModalController) {
+              public modalCtrl: ModalController,
+              private geoLocation: Geolocation,
+              private toastCtrl: ToastController,
+              private loadingCtrl: LoadingController) {
   }
 
   onSubmit(form: NgForm) {
@@ -54,5 +58,26 @@ export class AddPlacePage {
     modal.present();
   }
 
+  onLocate() {
+    const loading = this.loadingCtrl.create({
+      content: 'Getting location...'
+    });
+    loading.present();
 
+    this.geoLocation.getCurrentPosition()
+      .then((resp) => {
+        loading.dismissAll();
+        this.location = new Location(resp.coords.latitude, resp.coords.longitude);
+        this.locationIsSet = true;
+      }).catch(error => {
+        loading.dismissAll();
+        const toast = this.toastCtrl.create({
+          message: `Could not get location: ${error.message}`,
+          duration: 5000
+        });
+
+        toast.present();
+        console.error('Error getting location', error)
+    })
+  }
 }

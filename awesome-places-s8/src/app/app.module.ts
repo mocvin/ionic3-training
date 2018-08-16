@@ -17,6 +17,8 @@ import {loadingReducer as loading} from "../redux/reducers/loading.reducer";
 import {placeReducer as places} from "../redux/reducers/place.reducer";
 import {AwesomePlaceState, INITIAL_STATE} from "../redux/state";
 import {AgmCoreModule} from "@agm/core";
+import {Geolocation} from "@ionic-native/geolocation";
+import {Camera} from "@ionic-native/camera";
 declare var require;
 var reduxLogger = require("redux-logger");
 
@@ -49,6 +51,8 @@ var reduxLogger = require("redux-logger");
     SplashScreen,
     PlaceActions,
     LoadingActions,
+    Geolocation,
+    Camera,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     DevToolsExtension
   ]
