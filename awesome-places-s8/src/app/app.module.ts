@@ -32,7 +32,7 @@ var reduxLogger = require("redux-logger");
     BrowserModule,
     NgReduxModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyBwq-K9FqQuzouyj7fp1ymJMCyQnREl2Zk',
+      apiKey: 'AIzaSyDeaj2on_jbcPZVkeUh-9qDb3L4EqPYcDo',
     }),
     IonicModule.forRoot(MyApp)
   ],
